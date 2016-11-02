@@ -19,6 +19,11 @@ class Test(unittest.TestCase):
     def testIn1OutI(self):
         assert self.conv.convertIntToRoman(1) == "I"
 
+    def testIn2OutII(self):
+        assert self.conv.convertIntToRoman(2) == "II"
+
+    def testIn3OutIII(self):
+        assert self.conv.convertIntToRoman(3) == "III"
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
@@ -26,4 +31,4 @@ if __name__ == "__main__":
     
 class ConvToRoman:
     def convertIntToRoman(self, argInt):
-        return "I"
+        return "I" * argInt
