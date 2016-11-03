@@ -39,6 +39,9 @@ class Test(unittest.TestCase):
         
     def testIn9OutIX(self):
         assert self.conv.convertIntToRoman(9) == "IX"
+        
+    def testIn10OutX(self):
+        assert self.conv.convertIntToRoman(10) == "X"
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
@@ -56,6 +59,10 @@ class ConvToRoman:
                 return "IV"
             else:
                 return "V" + ("I" * diff)
-        else:
+        elif (argInt == 9):
             return "IX"
+        else:
+            return "X"
+        
+        
         
