@@ -27,6 +27,18 @@ class Test(unittest.TestCase):
         
     def testIn0OutNone(self):
         assert self.conv.convertIntToRoman(0) == None
+    
+    def testIn4OutIV(self):
+        assert self.conv.convertIntToRoman(4) == "IV"
+        
+    def testIn5OutV(self):
+        assert self.conv.convertIntToRoman(5) == "V"
+        
+    def testIn8OutVIII(self):
+        assert self.conv.convertIntToRoman(8) == "VIII"
+        
+    def testIn9OutIX(self):
+        assert self.conv.convertIntToRoman(9) == "IX"
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
@@ -36,4 +48,14 @@ class ConvToRoman:
     def convertIntToRoman(self, argInt):
         if (argInt <= 0):
             return None
-        return "I" * argInt
+        elif(argInt <=3):
+            return "I" * argInt
+        elif(argInt < 9):
+            diff = argInt - 5;
+            if(diff == -1):
+                return "IV"
+            else:
+                return "V" + ("I" * diff)
+        else:
+            return "IX"
+        
