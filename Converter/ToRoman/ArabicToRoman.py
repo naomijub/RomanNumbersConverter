@@ -42,27 +42,69 @@ class Test(unittest.TestCase):
         
     def testIn10OutX(self):
         assert self.conv.convertIntToRoman(10) == "X"
+        
+    def testIn14OutXIV(self):
+        assert self.conv.convertIntToRoman(14) == "XIV"
+        
+    def testIn44OutXLIV(self):
+        assert self.conv.convertIntToRoman(44) == "XLIV"
+        
+    def testIn99OutXCIX(self):
+        assert self.conv.convertIntToRoman(99) == "XCIX"
+    
+    def testIn350OutCCCL(self):
+        assert self.conv.convertIntToRoman(350) == "CCCL"
+        
+    def testIn500OutD(self):
+        assert self.conv.convertIntToRoman(500) == "D"
+        
+    def testIn900OutCM(self):
+        assert self.conv.convertIntToRoman(900) == "CM"
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
     
 class ConvToRoman:
+    
+    def __init__(self):
+        self.dic = {"u": ["I", "V", "X"], "d" : ["X", "L", "C"], "c" : ["C", "D", "M"]}
+    
     def convertIntToRoman(self, argInt):
         if (argInt <= 0):
             return None
-        elif(argInt <=3):
-            return "I" * argInt
-        elif(argInt < 9):
-            diff = argInt - 5;
-            if(diff == -1):
-                return "IV"
-            else:
-                return "V" + ("I" * diff)
-        elif (argInt == 9):
-            return "IX"
-        else:
-            return "X"
+        str = ""
+        str += self.GetStringValue(self.HundredValue(argInt), "c")
+        str += self.GetStringValue(self.TenValue(argInt), "d")
+        str += self.GetStringValue(self.UnitValue(argInt), "u")
+        print(argInt, str)
+        return str
         
+    def UnitValue(self, argInt):
+        return (argInt % 10)
+    
+    def TenValue(self, argInt):
+        if(argInt > 9):
+            return int(argInt / 10) % 10
+        return 0
+    
+    def HundredValue (self, argInt):
+        if(argInt > 99):
+            return int(argInt / 100) % 10
+        return 0;
+    
+    def GetStringValue(self, argValue, key):          
+        if (argValue == 0):
+            return ""
+        elif(argValue <=3):
+            return self.dic[key][0] * argValue
+        elif(argValue < 9):
+            diff = argValue - 5;
+            if(diff == -1):
+                return self.dic[key][0] + self.dic[key][1] 
+            else:
+                return self.dic[key][1] + (self.dic[key][0] * diff)
+        else:
+            return self.dic[key][0] + self.dic[key][2]
         
         
