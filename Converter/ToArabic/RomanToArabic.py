@@ -46,6 +46,12 @@ class Test(unittest.TestCase):
     def testInXLOut40(self):
         assert self.conv.convertRomanToInt("XL") == 40
         
+    def testInCLXXOut170(self):
+        assert self.conv.convertRomanToInt("CLXX") == 170
+        
+    def testInDXCOut590(self):
+        assert self.conv.convertRomanToInt("DXC") == 590
+        
     def testStrOutrtS(self):
         assert self.conv.invertString("Str") == "rtS"
     
