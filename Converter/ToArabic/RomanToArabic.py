@@ -24,6 +24,9 @@ class Test(unittest.TestCase):
         
     def testInIVOut4(self):
         assert self.conv.convertRomanToInt("IV") == 4
+        
+    def testStrOutrtS(self):
+        assert self.conv.invertString("Str") == "rtS"
     
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
@@ -31,13 +34,24 @@ if __name__ == "__main__":
     
 class ConvToInt:
     def __init__(self):
-        self.dic = {"I" : 1, "V" : 5, "X" : 10}
+        self.dic = {"I" : 1, "V" : 5, "X" : 10, "L" : 50, "C" : 100, "D" : 500, "M" : 1000}
         
     def convertRomanToInt(self, argRoman):
         if(argRoman == "" or argRoman == " "):
             return None
-        elif (argRoman.count("V") == 0):
-            return argRoman.count("I")
         else:
-            return 4
+            str = self.invertString(argRoman)
+            sum = 0
+            lastNumber = 0
+            for i in str:
+                current = self.dic[i]
+                positioner = 1
+                if(current < lastNumber):
+                    positioner = -1
+                sum += self.dic[i] * positioner
+                lastNumber = current
+            print(sum)
+            return sum
         
+    def invertString(self, str):
+        return str[::-1]
