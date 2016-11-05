@@ -27,6 +27,24 @@ class Test(unittest.TestCase):
     
     def testInVOut5(self):
         assert self.conv.convertRomanToInt("V") == 5
+            
+    def testInVIIIOut8(self):
+        assert self.conv.convertRomanToInt("VIII") == 8
+        
+    def testInIXOut9(self):
+        assert self.conv.convertRomanToInt("IX") == 9
+            
+    def testInXOut10(self):
+        assert self.conv.convertRomanToInt("X") == 10
+        
+    def testInXIXOut19(self):
+        assert self.conv.convertRomanToInt("XIX") == 19
+    
+    def testInXVIOut16(self):
+        assert self.conv.convertRomanToInt("XVI") == 16
+        
+    def testInXLOut40(self):
+        assert self.conv.convertRomanToInt("XL") == 40
         
     def testStrOutrtS(self):
         assert self.conv.invertString("Str") == "rtS"
