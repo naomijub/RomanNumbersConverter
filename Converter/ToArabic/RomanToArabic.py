@@ -24,6 +24,9 @@ class Test(unittest.TestCase):
         
     def testInIVOut4(self):
         assert self.conv.convertRomanToInt("IV") == 4
+    
+    def testInVOut5(self):
+        assert self.conv.convertRomanToInt("V") == 5
         
     def testStrOutrtS(self):
         assert self.conv.invertString("Str") == "rtS"
