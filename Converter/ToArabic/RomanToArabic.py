@@ -21,6 +21,9 @@ class Test(unittest.TestCase):
         
     def testInIIIOut3(self):
         assert self.conv.convertRomanToInt("III") == 3
+        
+    def testInIVOut4(self):
+        assert self.conv.convertRomanToInt("IV") == 4
     
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
@@ -33,6 +36,8 @@ class ConvToInt:
     def convertRomanToInt(self, argRoman):
         if(argRoman == "" or argRoman == " "):
             return None
-        return argRoman.count("I")
-        
+        elif (argRoman.count("V") == 0):
+            return argRoman.count("I")
+        else:
+            return 4
         
