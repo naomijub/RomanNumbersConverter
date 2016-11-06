@@ -60,6 +60,15 @@ class Test(unittest.TestCase):
         
     def testIn900OutCM(self):
         assert self.conv.convertIntToRoman(900) == "CM"
+        
+    def testValue5Is5(self):
+        assert self.conv.valueAval(5, 1) == 5
+    
+    def testValue47Is4(self):
+        assert self.conv.valueAval(47, 10) == 4
+        
+    def testValue753Is7(self):
+        assert self.conv.valueAval(753, 100) == 7
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
@@ -68,32 +77,25 @@ if __name__ == "__main__":
 class ConvToRoman:
     
     def __init__(self):
-        self.dic = {"u": ["I", "V", "X"], "d" : ["X", "L", "C"], "c" : ["C", "D", "M"]}
+        self.dic = {"u": ["I", "V", "X", 1], "d" : ["X", "L", "C", 10], "c" : ["C", "D", "M", 100]}
     
     def convertIntToRoman(self, argInt):
         if (argInt <= 0):
             return None
         str = ""
-        str += self.GetStringValue(self.HundredValue(argInt), "c")
-        str += self.GetStringValue(self.TenValue(argInt), "d")
-        str += self.GetStringValue(self.UnitValue(argInt), "u")
+        str += self.getStringValue(self.valueAval(argInt, self.dic["c"][3]), "c")
+        str += self.getStringValue(self.valueAval(argInt, self.dic["d"][3]), "d")
+        str += self.getStringValue(self.valueAval(argInt, self.dic["u"][3]), "u")
         print(argInt, str)
         return str
         
-    def UnitValue(self, argInt):
-        return (argInt % 10)
     
-    def TenValue(self, argInt):
-        if(argInt > 9):
-            return int(argInt / 10) % 10
-        return 0
-    
-    def HundredValue (self, argInt):
-        if(argInt > 99):
-            return int(argInt / 100) % 10
+    def valueAval(self,argInt,div):
+        if(argInt > (div -1)):
+            return int(argInt / div) % 10
         return 0;
     
-    def GetStringValue(self, argValue, key):          
+    def getStringValue(self, argValue, key):          
         if (argValue == 0):
             return ""
         elif(argValue <=3):
