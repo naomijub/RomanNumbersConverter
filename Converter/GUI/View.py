@@ -16,42 +16,91 @@ class view(tki.Tk):
         self.operatorSymbol = ""
         self.title("RomanArabicCalculator")
         self.run()
-        
+
     def sel(self, arg):
         self.selection = self.varLabel.get() + arg
         sel = self.selection
         self.varLabel.set(sel)
-        
+
     def typeSel(self):
         selection = self.varRadio.get()
-        if(selection == 0):
-            pass
-        elif (selection == 1):
-            pass
+        print(selection)
+        if(selection == 0): #Roman
+            self.B0['state'] = 'DISABLE'
+            self.B1['state'] = 'DISABLE'
+            self.B2['state'] = 'DISABLE'
+            self.B3['state'] = 'DISABLE'
+            self.B4['state'] = 'DISABLE'
+            self.B5['state'] = 'DISABLE'
+            self.B6['state'] = 'DISABLE'
+            self.B7['state'] = 'DISABLE'
+            self.B8['state'] = 'DISABLE'
+            self.B9['state'] = 'DISABLE'
+            self.BI['state'] = 'NORMAL'
+            self.BV['state'] = 'NORMAL'
+            self.BX['state'] = 'NORMAL'
+            self.BL['state'] = 'NORMAL'
+            self.BC['state'] = 'NORMAL'
+            self.BD['state'] = 'NORMAL'
+            self.BM['state'] = 'NORMAL'
+        elif (selection == 1): #Arabic
+            self.B0['state'] = 'NORMAL'
+            self.B1['state'] = 'NORMAL'
+            self.B2['state'] = 'NORMAL'
+            self.B3['state'] = 'NORMAL'
+            self.B4['state'] = 'NORMAL'
+            self.B5['state'] = 'NORMAL'
+            self.B6['state'] = 'NORMAL'
+            self.B7['state'] = 'NORMAL'
+            self.B8['state'] = 'NORMAL'
+            self.B9['state'] = 'NORMAL'
+            self.BI['state'] = 'DISABLE'
+            self.BV['state'] = 'DISABLE'
+            self.BX['state'] = 'DISABLE'
+            self.BL['state'] = 'DISABLE'
+            self.BC['state'] = 'DISABLE'
+            self.BD['state'] = 'DISABLE'
+            self.BM['state'] = 'DISABLE'
         else:
-            pass
-    
+            self.B0['state'] = 'DISABLE'
+            self.B1['state'] = 'DISABLE'
+            self.B2['state'] = 'DISABLE'
+            self.B3['state'] = 'DISABLE'
+            self.B4['state'] = 'DISABLE'
+            self.B5['state'] = 'DISABLE'
+            self.B6['state'] = 'DISABLE'
+            self.B7['state'] = 'DISABLE'
+            self.B8['state'] = 'DISABLE'
+            self.B9['state'] = 'DISABLE'
+            self.BI['state'] = 'DISABLE'
+            self.BV['state'] = 'DISABLE'
+            self.BX['state'] = 'DISABLE'
+            self.BL['state'] = 'DISABLE'
+            self.BC['state'] = 'DISABLE'
+            self.BD['state'] = 'DISABLE'
+            self.BM['state'] = 'DISABLE'
+
     def run(self):
         self.runLabel()
         self.runRadio()
         self.runButton()
-        
-    
+
+
     def runLabel(self):
         #label 1st row
         self.varLabel = tki.StringVar()
         self.label = tki.Label(self, textvariable=self.varLabel, bg="#fff", width=20, anchor="e")
         self.label.grid(row=0, column=0, columnspan=6)
-        
+
     def runRadio(self):
         #radio buttons 2nd row
         self.varRadio = tki.IntVar()
         self.varRadio.set(1)
-        Roman = tki.Radiobutton(self, text="Roman", variable=self.varRadio, value=1, command=self.typeSel)
+        Roman = tki.Radiobutton(self, text="Roman", variable=self.varRadio, value=1, command=lambda : self.typeSel())
         Roman.grid(row=1, column=0, columnspan=3)
-        Arabic = tki.Radiobutton(self, text="Arabic", variable=self.varRadio, value=2, command=self.typeSel)
+        Arabic = tki.Radiobutton(self, text="Arabic", variable=self.varRadio, value=2, command=lambda : self.typeSel())
         Arabic.grid(row=1, column=3, columnspan=3)
-       
+
     def runButton(self):
         #Buttons
         #3rd row
@@ -91,7 +140,7 @@ class view(tki.Tk):
         self.BD.grid(row=4, column=3)
         self.BM = tki.Button(self, text="M", command= lambda: self.sel('M'))
         self.BM.grid(row=4, column=4)
-        
-if __name__ == "__main__":    
+
+if __name__ == "__main__":
     app = view(None)
     app.mainloop()
