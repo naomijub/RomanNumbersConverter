@@ -26,59 +26,30 @@ class view(tki.Tk):
         selection = self.varRadio.get()
         print(selection)
         if(selection == 1): #Roman
-            self.B0['state'] = 'disable'
-            self.B1['state'] = 'disable'
-            self.B2['state'] = 'disable'
-            self.B3['state'] = 'disable'
-            self.B4['state'] = 'disable'
-            self.B5['state'] = 'disable'
-            self.B6['state'] = 'disable'
-            self.B7['state'] = 'disable'
-            self.B8['state'] = 'disable'
-            self.B9['state'] = 'disable'
-            self.BI['state'] = 'normal'
-            self.BV['state'] = 'normal'
-            self.BX['state'] = 'normal'
-            self.BL['state'] = 'normal'
-            self.BC['state'] = 'normal'
-            self.BD['state'] = 'normal'
-            self.BM['state'] = 'normal'
+            self.changeButtonStates('normal','disable')
         elif (selection == 2): #Arabic
-            self.B0['state'] = 'normal'
-            self.B1['state'] = 'normal'
-            self.B2['state'] = 'normal'
-            self.B3['state'] = 'normal'
-            self.B4['state'] = 'normal'
-            self.B5['state'] = 'normal'
-            self.B6['state'] = 'normal'
-            self.B7['state'] = 'normal'
-            self.B8['state'] = 'normal'
-            self.B9['state'] = 'normal'
-            self.BI['state'] = 'disable'
-            self.BV['state'] = 'disable'
-            self.BX['state'] = 'disable'
-            self.BL['state'] = 'disable'
-            self.BC['state'] = 'disable'
-            self.BD['state'] = 'disable'
-            self.BM['state'] = 'disable'
+            self.changeButtonStates('disable', 'normal')
         else:
-            self.B0['state'] = 'disable'
-            self.B1['state'] = 'disable'
-            self.B2['state'] = 'disable'
-            self.B3['state'] = 'disable'
-            self.B4['state'] = 'disable'
-            self.B5['state'] = 'disable'
-            self.B6['state'] = 'disable'
-            self.B7['state'] = 'disable'
-            self.B8['state'] = 'disable'
-            self.B9['state'] = 'disable'
-            self.BI['state'] = 'disable'
-            self.BV['state'] = 'disable'
-            self.BX['state'] = 'disable'
-            self.BL['state'] = 'disable'
-            self.BC['state'] = 'disable'
-            self.BD['state'] = 'disable'
-            self.BM['state'] = 'disable'
+            self.changeButtonStates('disable','disable')
+            
+    def changeButtonStates(self, roman, arabic):
+        self.B0['state'] = arabic
+        self.B1['state'] = arabic
+        self.B2['state'] = arabic
+        self.B3['state'] = arabic
+        self.B4['state'] = arabic
+        self.B5['state'] = arabic
+        self.B6['state'] = arabic
+        self.B7['state'] = arabic
+        self.B8['state'] = arabic
+        self.B9['state'] = arabic
+        self.BI['state'] = roman
+        self.BV['state'] = roman
+        self.BX['state'] = roman
+        self.BL['state'] = roman
+        self.BC['state'] = roman
+        self.BD['state'] = roman
+        self.BM['state'] = roman
 
     def run(self):
         self.runLabel()
