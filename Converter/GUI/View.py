@@ -24,7 +24,6 @@ class view(tki.Tk):
 
     def typeSel(self):
         selection = self.varRadio.get()
-        print(selection)
         if(selection == 1): #Roman
             self.changeButtonStates('normal','disable')
         elif (selection == 2): #Arabic
@@ -111,6 +110,18 @@ class view(tki.Tk):
         self.BD.grid(row=4, column=3)
         self.BM = tki.Button(self, text="M", command= lambda: self.sel('M'))
         self.BM.grid(row=4, column=4)
+
+    def runMathButtons(self):
+        self.BPlus = tki.Button(self, text="X", command= lambda: self.sel('X'))
+        self.BPlus.grid(row=4, column=0)
+        self.BMin = tki.Button(self, text="L", command= lambda: self.sel('L'))
+        self.BMin.grid(row=4, column=1)
+        self.BMul = tki.Button(self, text="C", command= lambda: self.sel('C'))
+        self.BMul.grid(row=4, column=2)
+        self.BDiv = tki.Button(self, text="D", command= lambda: self.sel('D'))
+        self.BDiv.grid(row=4, column=3)
+        self.BEq = tki.Button(self, text="M", command= lambda: self.sel('M'))
+        self.BEq.grid(row=4, column=4)
 
 if __name__ == "__main__":
     app = view(None)
