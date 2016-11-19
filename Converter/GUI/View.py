@@ -5,6 +5,7 @@ Created on 06/11/2016
 @author: JAT
 '''
 import tkinter as tki
+from Mathf import calculator as calcf
 
 class view(tki.Tk):
     def __init__(self, parent):
@@ -15,6 +16,7 @@ class view(tki.Tk):
         self.arg2 = ""
         self.operatorSymbol = ""
         self.title("RomanArabicCalculator")
+        self.calc = calcf.math()
         self.run()
 
     def sel(self, arg):
@@ -49,11 +51,27 @@ class view(tki.Tk):
         self.BC['state'] = roman
         self.BD['state'] = roman
         self.BM['state'] = roman
+        
+    def calculate(self, operator):
+        self.arg1 = self.selection
+        self.selection = ""
+        self.varLabel.set(self.selection)
+        self.operatorSymbol = operator
+        
+    def result(self, result):
+        self.arg2 = self.selection
+        self.selection = self.calc.calculate(self.arg1, self.arg2, self.operatorSymbol)
+        self.varLabel.set(self.selection)
+    
+    def clear(self):
+        self.selection = ""
+        self.varLabel.set(self.selection)   
 
     def run(self):
         self.runLabel()
         self.runRadio()
         self.runButton()
+        self.runMathButtons()
 
 
     def runLabel(self):
@@ -112,16 +130,20 @@ class view(tki.Tk):
         self.BM.grid(row=4, column=4)
 
     def runMathButtons(self):
-        self.BPlus = tki.Button(self, text="X", command= lambda: self.sel('X'))
-        self.BPlus.grid(row=4, column=0)
-        self.BMin = tki.Button(self, text="L", command= lambda: self.sel('L'))
-        self.BMin.grid(row=4, column=1)
-        self.BMul = tki.Button(self, text="C", command= lambda: self.sel('C'))
-        self.BMul.grid(row=4, column=2)
-        self.BDiv = tki.Button(self, text="D", command= lambda: self.sel('D'))
-        self.BDiv.grid(row=4, column=3)
-        self.BEq = tki.Button(self, text="M", command= lambda: self.sel('M'))
-        self.BEq.grid(row=4, column=4)
+        self.BPlus = tki.Button(self, text="+", command= lambda: self.calculate('+'))
+        self.BPlus.grid(row=5, column=0)
+        self.BMin = tki.Button(self, text="-", command= lambda: self.calculate('-'))
+        self.BMin.grid(row=5, column=1)
+        self.BMul = tki.Button(self, text="*", command= lambda: self.calculate('*'))
+        self.BMul.grid(row=5, column=2)
+        self.BDiv = tki.Button(self, text="/", command= lambda: self.calculate('/'))
+        self.BDiv.grid(row=5, column=3)
+        self.BEq = tki.Button(self, text="%", command= lambda: self.calculate('%'))
+        self.BEq.grid(row=5, column=4)
+        self.BEq = tki.Button(self, text="=", command= lambda: self.result('='))
+        self.BEq.grid(row=5, column=5)
+        self.BClear = tki.Button(self, text=" CLEAR ", command= lambda: self.clear())
+        self.BClear.grid(row=6, column=1, columnspan=3)
 
 if __name__ == "__main__":
     app = view(None)
